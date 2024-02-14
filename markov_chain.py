@@ -21,7 +21,7 @@ class MarkovChain:
             self.chain[current_word].append(next_word)
         print(self.chain)
 
-    def generate_text(self, length=100):
+    def generate_text(self, length=10):
         # Select random word from the chain
         current_word = random.choice(list(self.chain.keys()))
         # initialize list to store generated text, add the first(random) word
@@ -42,7 +42,8 @@ class MarkovChain:
 
 
 # Example usage:
-input_text = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda!"
+# input_text = "A man, a plan, a canal: Panama! A dog, a panic in a pagoda!"
+input_text = "I like dogs and you like dogs. I like cats but you hate cats."
 markov = MarkovChain()
 markov.add_text(input_text)
 
