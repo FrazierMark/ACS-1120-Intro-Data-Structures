@@ -13,7 +13,7 @@ class SecondOrderMarkovChain:
       with open(str(source_text)) as file:
         
       # Define a regex pattern to remove punctuation (except apostrophe)
-        pattern = re.compile(r'[^\w\']')
+        pattern = re.compile(r'[^\w\'_]')
         text = file.read()
         
         all_words_without_punctuations = re.sub(pattern, ' ', text)
