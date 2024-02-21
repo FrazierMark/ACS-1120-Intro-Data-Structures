@@ -1,20 +1,17 @@
 """Main script, uses other modules to generate sentences."""
-from flask import Flask
-from sample import return_random_word
-from histogram import histogram
+from flask import Flask, render_template
+from markov_chain2 import SecondOrderMarkovChain
 
 app = Flask(__name__)
 
-# TODO: Initialize your histogram, hash table, or markov chain here.
-# Any code placed here will run only once, when the server starts.
-new_histogram = histogram('source_text.txt')
+markov_chain = SecondOrderMarkovChain("./data/source_text.txt")
+max_length = 15
 
 @app.route("/")
 def home():
     """Route that returns a web page containing the generated text."""
-    
-    random_word = return_random_word(new_histogram)
-    return f"<p>RANDOM WORD: {random_word}</p>"
+    new_text = markov_chain.generate_text(max_length)
+    return render_template("index.html", sentence=new_text)
 
 
 # if __name__ == "__main__":

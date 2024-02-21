@@ -39,8 +39,8 @@ class LinkedList:
         # Start at head node
         node = self.head  # O(1) time to assign new variable
         # Loop until node is None, which is one node too far past tail
-        while node is not None:  # Always n iterations because no early return
-            items.append(node.data)  # O(1) time (on average) to append to list
+        while node is not None:
+            items.append(node.data)
             # Skip to next node to advance forward in linked list
             node = node.next  # O(1) time to reassign variable
         # Now list contains items from all nodes
@@ -92,12 +92,12 @@ class LinkedList:
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item, if present return True otherwise False <---- WRONG
-        current = self.head
-        while current:
-            if matcher(current.data):
-                return current.data
-            current = current.next
-        return None
+        node = self.head
+        while node is not None:
+            if matcher in node.data:
+                return True
+            node = node.next
+        return False
             
 
     def delete(self, item):
