@@ -105,7 +105,6 @@ class LinkedList:
         TODO: Best case running time: O(1) if the item to delete is the head of the linked list.
         TODO: Worst case running time: O(n) if the item to delete is the last node in the linked list or not found."""
         # Check if the list is empty
-        # Check if the list is empty
         if self.head is None:
             raise ValueError('Item not found: {}'.format(item))
         
