@@ -25,7 +25,7 @@ class ListogramTest(unittest.TestCase):
         # Verify histogram as dictionary of entries like {word: count}
         dictogram = dict(listogram)
         assert len(dictogram) == 5
-        self.assertCountEqual(dictogram, self.fish_dict)  # Ignore item order
+        self.assertCountEqual(dictogram, self.fish_dict)
 
     def test_contains(self):
         histogram = Listogram(self.fish_words)
