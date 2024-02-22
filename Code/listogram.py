@@ -3,8 +3,6 @@
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
 
-import random
-
 # List of Lists to satisfy gradescope
 class Listogram(list):
     """Listogram is a histogram implemented as a subclass of the list type."""
@@ -22,7 +20,6 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-        
         self.tokens += count
 
         if self.__contains__(word):
