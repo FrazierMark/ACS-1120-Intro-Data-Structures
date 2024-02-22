@@ -5,7 +5,7 @@ from markov_chain2 import SecondOrderMarkovChain
 app = Flask(__name__)
 
 markov_chain = SecondOrderMarkovChain("./data/corpus.txt")
-max_length = 15
+max_length = 11
 
 @app.route("/")
 def home():

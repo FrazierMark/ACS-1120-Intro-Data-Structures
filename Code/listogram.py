@@ -3,7 +3,9 @@
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
 
+import random
 
+# List of Lists to satisfy gradescope
 class Listogram(list):
     """Listogram is a histogram implemented as a subclass of the list type."""
 
@@ -15,13 +17,11 @@ class Listogram(list):
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
         if word_list is not None:
-            for word in word_list:
-                self.add_count(word)
+            for word, count in word_list:
+                self.add_count(word, count)
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
-        # TODO: Increase word frequency by count
-        
         # Check if the word is already in the list
         index = None
         for i, (existing_word, existing_count) in enumerate(self):
@@ -43,7 +43,7 @@ class Listogram(list):
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
-        # TODO: Retrieve word frequency count
+        # Retrieve word frequency count
         for existing_word, existing_count in self:
             if existing_word == word:
                 return existing_count
@@ -60,24 +60,99 @@ class Listogram(list):
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
-        # TODO: Implement linear search to find index of entry with target word
+        # Implement linear search to find index of entry with target word
         if target not in self:
-                return None
+            return None
         for index, (existing_word, existing_count) in enumerate(self):
             if target == existing_word:
                 return index
-        
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
-        # TODO: Randomly choose a word based on its frequency in this histogram
+        # Randomly choose a word based on its frequency in this histogram
         target_count = random.randint(1, self.tokens)
         cumulative_count = 0
         for word, count in self:
             cumulative_count += count
             if cumulative_count >= target_count:
                 return word
+
+
+# class Listogram(list):
+#     """Listogram is a histogram implemented as a subclass of the list type."""
+
+#     def __init__(self, word_list=None):
+#         """Initialize this histogram as a new list and count given words."""
+#         super(Listogram, self).__init__()  # Initialize this as a new list
+#         # Add properties to track useful word counts for this histogram
+#         self.types = 0  # Count of distinct word types in this histogram
+#         self.tokens = 0  # Total count of all word tokens in this histogram
+#         # Count words in given list, if any
+#         if word_list is not None:
+#             for word in word_list:
+#                 self.add_count(word)
+
+#     def add_count(self, word, count=1):
+#         """Increase frequency count of given word by given count amount."""
+#         # TODO: Increase word frequency by count
+        
+#         # Check if the word is already in the list
+#         index = None
+#         for i, (existing_word, existing_count) in enumerate(self):
+#             if existing_word == word:
+#                 index = i
+#                 break
+
+#         # If the word is not in the list, it's a new type
+#         if index is None:
+#             self.append((word, count))
+#             self.types += 1
+#         else:
+#             # If the word is in the list, update its count
+#             current_count = self[index][1]
+#             self[index] = (word, current_count + count)
+
+#         # Increase total token count
+#         self.tokens += count
+
+#     def frequency(self, word):
+#         """Return frequency count of given word, or 0 if word is not found."""
+#         # TODO: Retrieve word frequency count
+#         for existing_word, existing_count in self:
+#             if existing_word == word:
+#                 return existing_count
+#         return 0 # if word is not found in list
+
+#     def __contains__(self, word):
+#         """Return boolean indicating if given word is in this histogram."""
+#         # Iterate over words only and check if the word is present
+#         for existing_word, _ in self:
+#             if existing_word == word:
+#                 return True
+#         return False
+
+#     def index_of(self, target):
+#         """Return the index of entry containing given target word if found in
+#         this histogram, or None if target word is not found."""
+#         # TODO: Implement linear search to find index of entry with target word
+#         if target not in self:
+#                 return None
+#         for index, (existing_word, existing_count) in enumerate(self):
+#             if target == existing_word:
+#                 return index
+        
+
+#     def sample(self):
+#         """Return a word from this histogram, randomly sampled by weighting
+#         each word's probability of being chosen by its observed frequency."""
+#         # TODO: Randomly choose a word based on its frequency in this histogram
+#         target_count = random.randint(1, self.tokens)
+#         cumulative_count = 0
+#         for word, count in self:
+#             cumulative_count += count
+#             if cumulative_count >= target_count:
+#                 return word
 
 
 def print_histogram(word_list):
